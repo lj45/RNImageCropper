@@ -6,10 +6,11 @@
  * @flow strict-local
  */
 
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import Tabs from "./src/routers/Tabs";
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import Tabs from './src/routers/Tabs';
+import CameraPage from './src/pages/camera';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -23,8 +24,13 @@ const App = () => {
         // }}
       >
         <Stack.Screen
+          name="CameraPage"
+          component={CameraPage}
+          options={{header: () => {}}}
+        />
+        <Stack.Screen
           name="Tabs"
-          options={{ headerShown: false }}
+          options={{headerShown: false}}
           component={Tabs}
         />
       </Stack.Navigator>
