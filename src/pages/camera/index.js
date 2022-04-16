@@ -17,6 +17,9 @@ import {
 import {useCameraDevices} from 'react-native-vision-camera/src/hooks/useCameraDevices';
 import {Camera} from 'react-native-vision-camera';
 
+import {NativeModules} from 'react-native';
+const {MyImageCrop} = NativeModules;
+
 const {width, height} = Dimensions.get('window');
 const CameraPage = ({navigation}) => {
   const camera = useRef(null);
@@ -30,10 +33,11 @@ const CameraPage = ({navigation}) => {
   const takePicture = async () => {
     if (camera && camera.current) {
       const photo = await camera.current.takePhoto({
-        flash: 'on',
+        flash: 'off',
       });
       console.log(photo);
-      navigation.navigate('CropperPage');
+      MyImageCrop.startCrop({path: photo.path});
+      // navigation.navigate('CropperPage');
       // ImagePicker.openCropper({
       //   path: photo.path,
       //   width: 300,
